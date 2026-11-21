@@ -1,0 +1,171 @@
+{
+  "_note": "Synthetic contracts written for this project. The rules text is original and imitates the house style of each venue in order to exercise the extractor; it is not copied from, and does not represent, any real listed contract.",
+  "contracts": [
+    {
+      "venue": "kalshi",
+      "id": "CPIYOY-26MAR-T3.0",
+      "title": "Will year-over-year CPI inflation be above 3.0% in March 2026?",
+      "question": "CPI year-over-year above 3.0% for March 2026",
+      "rules": "This contract settles to Yes if the year-over-year change in the Consumer Price Index for All Urban Consumers (CPI-U), not seasonally adjusted, for March 2026 is greater than 3.0 percent. The value is taken from the initial release published by the Bureau of Labor Statistics and is not subject to any subsequent revisions. The figure is used as published by the source, rounded to one decimal place. If the value is exactly equal to the threshold, the contract resolves to No. Settlement occurs after the scheduled release at 8:30 AM ET on April 10, 2026. The exchange will determine settlement from the official release.",
+      "close_time": "2026-04-10T08:30:00",
+      "settle_time": "2026-04-10T12:00:00",
+      "stated_source": "Bureau of Labor Statistics, CPI-U NSA"
+    },
+    {
+      "venue": "polymarket",
+      "id": "cpi-above-3-march-2026",
+      "title": "CPI above 3% in March 2026?",
+      "question": "Will March 2026 CPI inflation come in above 3%?",
+      "rules": "This market will resolve to Yes if the year-over-year US CPI inflation rate for March 2026 is greater than 3.0 percent, and to No otherwise. The resolution source is the FRED series for the Consumer Price Index for All Urban Consumers, using the value available at the time of settlement. Figures are read to one decimal place. If the series has not been updated by April 30 2026 the market may resolve based on a consensus of credible public reporting. Disputes are resolved by the UMA optimistic oracle.",
+      "close_time": "2026-04-10T12:30:00",
+      "stated_source": "FRED"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "FEDDEC-26JUN-CUT25",
+      "title": "Will the Fed cut rates by at least 25 bps at the June 2026 meeting?",
+      "question": "Fed funds target lowered by at least 25 basis points in June 2026",
+      "rules": "This contract settles to Yes if the Federal Open Market Committee lowers the target range for the federal funds rate by at least 25 basis points at the meeting concluding June 17, 2026. Settlement is determined from the statement published by the Federal Reserve at the conclusion of that meeting. If no statement has been published by June 30 2026 the contract resolves to No. The contract will not resolve before the scheduled statement release at 2:00 PM ET.",
+      "close_time": "2026-06-17T14:00:00",
+      "stated_source": "Federal Reserve FOMC statement"
+    },
+    {
+      "venue": "polymarket",
+      "id": "fed-cut-june-2026",
+      "title": "Fed rate cut of 25+ bps in June 2026?",
+      "question": "Will the Fed cut by 25 bps or more in June 2026?",
+      "rules": "This market resolves Yes if the FOMC announces a reduction of at least 25 basis points to the federal funds target range at its June 2026 meeting. The resolution source is the official Federal Reserve statement. The market may resolve early as soon as the statement is published. If the meeting is postponed beyond July 15 2026 the market will be voided and all positions refunded. Disputes are handled by the UMA optimistic oracle.",
+      "close_time": "2026-06-17T18:00:00"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "NFP-26MAY-T150",
+      "title": "Will May 2026 nonfarm payrolls exceed 150,000?",
+      "question": "Nonfarm payroll change above 150,000 for May 2026",
+      "rules": "This contract settles to Yes if the change in total nonfarm payroll employment for May 2026 is greater than 150,000. The value is the initial release from the Bureau of Labor Statistics Employment Situation report and revisions will not be used. If the reported value is exactly equal to 150,000 the contract resolves to No. Settlement follows the release at 8:30 AM ET on June 5, 2026.",
+      "close_time": "2026-06-05T08:30:00",
+      "stated_source": "Bureau of Labor Statistics"
+    },
+    {
+      "venue": "polymarket",
+      "id": "nfp-may-2026-above-150k",
+      "title": "May 2026 nonfarm payrolls above 150k?",
+      "question": "Will nonfarm payrolls for May 2026 be above 150,000?",
+      "rules": "This market resolves Yes if nonfarm payroll employment for May 2026 increases by more than 150,000 jobs according to the Bureau of Labor Statistics. The figure used will be the most recently published value as of the settlement date, including any revised data. Resolution occurs after the June 5 2026 release.",
+      "close_time": "2026-06-05T13:00:00"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "BTC-26DEC31-T100K",
+      "title": "Will Bitcoin close above $100,000 on December 31, 2026?",
+      "question": "BTC above $100,000 at year end 2026",
+      "rules": "This contract settles to Yes if the price of Bitcoin is greater than or equal to $100,000 at 5:00 PM ET on December 31, 2026. The settlement price is taken from the Coinbase BTC-USD spot price, rounded to the nearest dollar. The contract will not resolve before the scheduled expiration.",
+      "close_time": "2026-12-31T17:00:00",
+      "stated_source": "Coinbase spot"
+    },
+    {
+      "venue": "polymarket",
+      "id": "btc-100k-end-2026",
+      "title": "Bitcoin above $100,000 on December 31, 2026?",
+      "question": "Will BTC be above $100,000 at the end of 2026?",
+      "rules": "This market resolves Yes if the price of Bitcoin exceeds $100,000 at 12:00 AM UTC on January 1 2027. The resolution source is the CoinGecko BTC/USD price. The value is used as published. The market may resolve early once the threshold has been exceeded and confirmed. Disputes are resolved by the UMA optimistic oracle.",
+      "close_time": "2027-01-01T00:00:00",
+      "stated_source": "CoinGecko"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "GDPQ1-26-T2.0",
+      "title": "Will Q1 2026 real GDP growth be above 2.0%?",
+      "question": "Real GDP growth above 2.0% for Q1 2026",
+      "rules": "This contract settles to Yes if the annualized change in real gross domestic product for the first quarter of 2026 is greater than 2.0 percent. The value is taken from the advance estimate published by the Bureau of Economic Analysis and is not subject to revisions. The figure is rounded to one decimal place. If the advance estimate has not been published by May 15 2026 the contract will be voided and positions refunded.",
+      "close_time": "2026-04-29T08:30:00",
+      "stated_source": "Bureau of Economic Analysis"
+    },
+    {
+      "venue": "polymarket",
+      "id": "gdp-q1-2026-above-2",
+      "title": "Q1 2026 GDP growth above 2%?",
+      "question": "Will real GDP growth for Q1 2026 be above 2%?",
+      "rules": "This market resolves Yes if annualized real GDP growth for the first quarter of 2026 is greater than 2.0 percent according to the Bureau of Economic Analysis. The third estimate will be used, including any revised figures. Resolution occurs after the June 2026 release. Disputes are resolved by the UMA optimistic oracle.",
+      "close_time": "2026-06-25T12:30:00"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "HURR-26-NAMED-T14",
+      "title": "Will there be at least 14 named Atlantic storms in the 2026 season?",
+      "question": "At least 14 named Atlantic storms in 2026",
+      "rules": "This contract settles to Yes if the number of named storms in the Atlantic basin during the 2026 hurricane season is greater than or equal to 14. The count is taken from NOAA records as of December 15, 2026. Storms named after that date will not be counted.",
+      "close_time": "2026-11-30T23:59:00",
+      "stated_source": "NOAA"
+    },
+    {
+      "venue": "polymarket",
+      "id": "atlantic-named-storms-2026-14",
+      "title": "14 or more named Atlantic storms in 2026?",
+      "question": "Will there be 14 or more named Atlantic storms in 2026?",
+      "rules": "This market resolves Yes if at least 14 named storms form in the Atlantic basin during the 2026 season, according to the National Weather Service. The count is taken as of January 31 2027 to allow for post-season analysis, which has previously added storms. Disputes are resolved by the UMA optimistic oracle.",
+      "close_time": "2026-12-01T05:00:00"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "UNRATE-26APR-T4.5",
+      "title": "Will the April 2026 unemployment rate be at least 4.5%?",
+      "question": "Unemployment rate at least 4.5% for April 2026",
+      "rules": "This contract settles to Yes if the civilian unemployment rate for April 2026 is greater than or equal to 4.5 percent. The value is taken from the initial release by the Bureau of Labor Statistics, rounded to one decimal place, and revisions will not be used. Settlement follows the release at 8:30 AM ET on May 8, 2026.",
+      "close_time": "2026-05-08T08:30:00",
+      "stated_source": "Bureau of Labor Statistics"
+    },
+    {
+      "venue": "polymarket",
+      "id": "unemployment-april-2026-4-5",
+      "title": "April 2026 unemployment rate at 4.5% or higher?",
+      "question": "Will the unemployment rate for April 2026 be at least 4.5%?",
+      "rules": "This market resolves Yes if the US unemployment rate for April 2026 is at least 4.5 percent as reported by the Bureau of Labor Statistics. The value is used as published, rounded to one decimal place, taken from the initial release. Resolution occurs after the May 8 2026 release at 8:30 AM ET. Disputes are resolved by the UMA optimistic oracle.",
+      "close_time": "2026-05-08T13:00:00"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "SPX-26JUN30-T6000",
+      "title": "Will the S&P 500 close above 6,000 on June 30, 2026?",
+      "question": "S&P 500 close above 6000 on June 30 2026",
+      "rules": "This contract settles to Yes if the official closing level of the S&P 500 index on June 30, 2026 is greater than 6,000. The closing level is taken as published by S&P Dow Jones Indices at 4:00 PM ET. If the market is closed on that date, the previous trading day's close is used.",
+      "close_time": "2026-06-30T16:00:00",
+      "stated_source": "S&P Dow Jones Indices"
+    },
+    {
+      "venue": "polymarket",
+      "id": "spx-6000-june-30-2026",
+      "title": "S&P 500 above 6000 on June 30, 2026?",
+      "question": "Will the S&P 500 close above 6,000 on June 30 2026?",
+      "rules": "This market resolves Yes if the S&P 500 closes above 6,000 on June 30 2026, as reported by Nasdaq at 4:00 PM ET. Values are used as published. Disputes are resolved by the UMA optimistic oracle.",
+      "close_time": "2026-06-30T20:00:00",
+      "stated_source": "Nasdaq"
+    },
+
+    {
+      "venue": "kalshi",
+      "id": "MOVIE-26SUM-T400M",
+      "title": "Will the top summer 2026 film gross over $400 million domestically?",
+      "question": "Top summer 2026 domestic box office above $400 million",
+      "rules": "This contract settles to Yes if the highest domestic box office gross for a film released between May 1 and September 1, 2026 is greater than $400 million. Grosses are taken from Box Office Mojo as of September 15, 2026.",
+      "close_time": "2026-09-01T23:59:00",
+      "stated_source": "Box Office Mojo"
+    },
+
+    {
+      "venue": "polymarket",
+      "id": "ai-model-release-2026",
+      "title": "Will a major lab release a new frontier model before July 2026?",
+      "question": "New frontier model released before July 2026?",
+      "rules": "This market resolves Yes if a major AI lab publicly releases a new frontier model before July 1 2026, based on a consensus of credible public reporting. Disputes are resolved by the UMA optimistic oracle.",
+      "close_time": "2026-07-01T04:00:00"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-venue settlement rule differences</title>
+<style>
+body{margin:0;background:#f6f7f9;color:#15181d;font:14px/1.5 -apple-system,"Segoe UI",Inter,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px}
+h1{font-size:22px;margin:0 0 4px}
+h2{font-size:15px;margin:0 0 4px;display:flex;gap:8px;align-items:center}
+.muted{color:#646b76}.small{font-size:12px}
+.card{background:#fff;border:1px solid #e3e6eb;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.kpi{background:#fff;border:1px solid #e3e6eb;border-radius:12px;padding:14px 16px}
+.kpi b{display:block;font-size:24px}.kpi span{color:#646b76;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td,th{text-align:left;padding:7px 8px;border-top:1px solid #eef0f3;vertical-align:top}
+th{color:#646b76;font-size:12px;border-top:none;font-weight:600}
+.facet{font-weight:600}
+.pill{color:#fff;border-radius:999px;padding:1px 8px;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.why{color:#3b414b}
+details{margin-top:4px}summary{cursor:pointer;color:#646b76;font-size:12px}
+details p{margin:4px 0;color:#646b76;font-size:12px}
+</style></head><body><div class="wrap">
+<h1>Cross-venue settlement rule differences</h1>
+<p class="muted">Matched contracts across venues, with every extracted settlement facet that differs and what it can do to a payout.</p>
+<div class="kpis">
+<div class="kpi"><b>8</b><span>matched pairs</span></div>
+<div class="kpi"><b>6</b><span>pairs that can settle to opposite outcomes</span></div>
+<div class="kpi"><b>2</b><span>pairs with material but less direct differences</span></div>
+</div>
+<section class="card">
+<h2><span class="pill" style="background:#b3261e">critical</span> Will the S&amp;P 500 close above 6,000 on June 30, 2026?</h2>
+<p class="muted small">kalshi:SPX-26JUN30-T6000 &nbsp;vs&nbsp; polymarket:spx-6000-june-30-2026 &nbsp;&middot;&nbsp; title match 0.97</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-critical">
+<td><span class="pill" style="background:#b3261e">critical</span></td>
+<td class="facet">source</td>
+<td>S&amp;P</td>
+<td>Nasdaq</td>
+<td class="why">the two sources are unrelated, so they can report different outcomes<details><summary>evidence</summary><p><b>kalshi:</b> stated settlement source: S&amp;P Dow Jones Indices</p><p><b>polymarket:</b> stated settlement source: Nasdaq</p></details></td></tr><tr class="sev-info">
+<td><span class="pill" style="background:#5a6472">info</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">venue defaults differ (at least one contract does not state this): a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> venue default (not stated in the rules text)</p><p><b>polymarket:</b> Disputes are resolved by the UMA optimistic oracle.</p></details></td></tr></table>
+</section><section class="card">
+<h2><span class="pill" style="background:#b3261e">critical</span> Will Bitcoin close above $100,000 on December 31, 2026?</h2>
+<p class="muted small">kalshi:BTC-26DEC31-T100K &nbsp;vs&nbsp; polymarket:btc-100k-end-2026 &nbsp;&middot;&nbsp; title match 0.95</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-critical">
+<td><span class="pill" style="background:#b3261e">critical</span></td>
+<td class="facet">comparator</td>
+<td>&gt;=</td>
+<td>&gt;</td>
+<td class="why">a value exactly on the threshold settles the two contracts opposite ways<details><summary>evidence</summary><p><b>kalshi:</b> This contract settles to Yes if the price of Bitcoin is greater than or equal to $100,000 at 5:00 PM ET on December 31, 2026.</p><p><b>polymarket:</b> This market resolves Yes if the price of Bitcoin exceeds $100,000 at 12:00 AM UTC on January 1 2027.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">early resolution</td>
+<td>not allowed</td>
+<td>allowed</td>
+<td class="why">one contract can settle before the other, so a later reversal is captured on only one venue<details><summary>evidence</summary><p><b>kalshi:</b> The contract will not resolve before the scheduled expiration.</p><p><b>polymarket:</b> The market may resolve early once the threshold has been exceeded and confirmed.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">rounding</td>
+<td>to dollar</td>
+<td>as published</td>
+<td class="why">a value near the threshold can round across it on one venue and not the other<details><summary>evidence</summary><p><b>kalshi:</b> The settlement price is taken from the Coinbase BTC-USD spot price, rounded to the nearest dollar.</p><p><b>polymarket:</b> The value is used as published.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">source</td>
+<td>Coinbase</td>
+<td>CoinGecko</td>
+<td class="why">crypto venues quote different prices at the same instant<details><summary>evidence</summary><p><b>kalshi:</b> stated settlement source: Coinbase spot</p><p><b>polymarket:</b> stated settlement source: CoinGecko</p></details></td></tr><tr class="sev-minor">
+<td><span class="pill" style="background:#5a6472">minor</span></td>
+<td class="facet">timezone</td>
+<td>ET</td>
+<td>UTC</td>
+<td class="why">an event near midnight can fall on different days<details><summary>evidence</summary><p><b>kalshi:</b> This contract settles to Yes if the price of Bitcoin is greater than or equal to $100,000 at 5:00 PM ET on December 31, 2026.</p><p><b>polymarket:</b> This market resolves Yes if the price of Bitcoin exceeds $100,000 at 12:00 AM UTC on January 1 2027.</p></details></td></tr><tr class="sev-info">
+<td><span class="pill" style="background:#5a6472">info</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">venue defaults differ (at least one contract does not state this): a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> venue default (not stated in the rules text)</p><p><b>polymarket:</b> Disputes are resolved by the UMA optimistic oracle.</p></details></td></tr></table>
+</section><section class="card">
+<h2><span class="pill" style="background:#b3261e">critical</span> Will Q1 2026 real GDP growth be above 2.0%?</h2>
+<p class="muted small">kalshi:GDPQ1-26-T2.0 &nbsp;vs&nbsp; polymarket:gdp-q1-2026-above-2 &nbsp;&middot;&nbsp; title match 0.89</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-critical">
+<td><span class="pill" style="background:#b3261e">critical</span></td>
+<td class="facet">revisions</td>
+<td>initial_release</td>
+<td>revised_data</td>
+<td class="why">a revision between the first print and the final figure settles the two contracts opposite ways<details><summary>evidence</summary><p><b>kalshi:</b> The value is taken from the advance estimate published by the Bureau of Economic Analysis and is not subject to revisions.</p><p><b>polymarket:</b> The third estimate will be used, including any revised figures.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">void conditions</td>
+<td>void_or_refund</td>
+<td>not stated</td>
+<td class="why">only one venue states this, so one venue may refund or resolve 50/50 where the other still pays a side<details><summary>evidence</summary><p><b>kalshi:</b> If the advance estimate has not been published by May 15 2026 the contract will be voided and positions refunded.</p><p><b>polymarket:</b> -</p></details></td></tr><tr class="sev-info">
+<td><span class="pill" style="background:#5a6472">info</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">venue defaults differ (at least one contract does not state this): a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> venue default (not stated in the rules text)</p><p><b>polymarket:</b> Disputes are resolved by the UMA optimistic oracle.</p></details></td></tr></table>
+</section><section class="card">
+<h2><span class="pill" style="background:#b3261e">critical</span> Will May 2026 nonfarm payrolls exceed 150,000?</h2>
+<p class="muted small">kalshi:NFP-26MAY-T150 &nbsp;vs&nbsp; polymarket:nfp-may-2026-above-150k &nbsp;&middot;&nbsp; title match 0.87</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-critical">
+<td><span class="pill" style="background:#b3261e">critical</span></td>
+<td class="facet">revisions</td>
+<td>initial_release</td>
+<td>revised_data</td>
+<td class="why">a revision between the first print and the final figure settles the two contracts opposite ways<details><summary>evidence</summary><p><b>kalshi:</b> The value is the initial release from the Bureau of Labor Statistics Employment Situation report and revisions will not be used.</p><p><b>polymarket:</b> The figure used will be the most recently published value as of the settlement date, including any revised data.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">tie handling</td>
+<td>exact value resolves no</td>
+<td>not stated</td>
+<td class="why">only one venue states this, so an exact tie on the threshold is handled differently<details><summary>evidence</summary><p><b>kalshi:</b> If the reported value is exactly equal to 150,000 the contract resolves to No. Settlement follows the release at 8:30 AM ET on June 5, 2026.</p><p><b>polymarket:</b> -</p></details></td></tr><tr class="sev-info">
+<td><span class="pill" style="background:#5a6472">info</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">venue defaults differ (at least one contract does not state this): a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> venue default (not stated in the rules text)</p><p><b>polymarket:</b> venue default (not stated in the rules text)</p></details></td></tr></table>
+</section><section class="card">
+<h2><span class="pill" style="background:#b3261e">critical</span> Will there be at least 14 named Atlantic storms in the 2026 season?</h2>
+<p class="muted small">kalshi:HURR-26-NAMED-T14 &nbsp;vs&nbsp; polymarket:atlantic-named-storms-2026-14 &nbsp;&middot;&nbsp; title match 0.78</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-critical">
+<td><span class="pill" style="background:#b3261e">critical</span></td>
+<td class="facet">deadline</td>
+<td>December 15 2026</td>
+<td>January 31 2027</td>
+<td class="why">an event occurring between the two deadlines settles the contracts opposite ways<details><summary>evidence</summary><p><b>kalshi:</b> The count is taken from NOAA records as of December 15, 2026.</p><p><b>polymarket:</b> The count is taken as of January 31 2027 to allow for post-season analysis, which has previously added storms.</p></details></td></tr><tr class="sev-info">
+<td><span class="pill" style="background:#5a6472">info</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">venue defaults differ (at least one contract does not state this): a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> venue default (not stated in the rules text)</p><p><b>polymarket:</b> Disputes are resolved by the UMA optimistic oracle.</p></details></td></tr></table>
+</section><section class="card">
+<h2><span class="pill" style="background:#b3261e">critical</span> Will year-over-year CPI inflation be above 3.0% in March 2026?</h2>
+<p class="muted small">kalshi:CPIYOY-26MAR-T3.0 &nbsp;vs&nbsp; polymarket:cpi-above-3-march-2026 &nbsp;&middot;&nbsp; title match 0.68</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-critical">
+<td><span class="pill" style="background:#b3261e">critical</span></td>
+<td class="facet">revisions</td>
+<td>initial_release</td>
+<td>value_at_settlement</td>
+<td class="why">a revision between the first print and the final figure settles the two contracts opposite ways<details><summary>evidence</summary><p><b>kalshi:</b> The value is taken from the initial release published by the Bureau of Labor Statistics and is not subject to any subsequent revisions.</p><p><b>polymarket:</b> The resolution source is the FRED series for the Consumer Price Index for All Urban Consumers, using the value available at the time of settlement.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> The exchange will determine settlement from the official release.</p><p><b>polymarket:</b> Disputes are resolved by the UMA optimistic oracle.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">source</td>
+<td>BLS</td>
+<td>FRED</td>
+<td class="why">FRED republishes BLS series, but FRED carries revisions that the BLS release does not<details><summary>evidence</summary><p><b>kalshi:</b> stated settlement source: Bureau of Labor Statistics, CPI-U NSA</p><p><b>polymarket:</b> stated settlement source: FRED</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">tie handling</td>
+<td>exact value resolves no</td>
+<td>not stated</td>
+<td class="why">only one venue states this, so an exact tie on the threshold is handled differently<details><summary>evidence</summary><p><b>kalshi:</b> If the value is exactly equal to the threshold, the contract resolves to No. Settlement occurs after the scheduled release at 8:30 AM ET on April 10, 2026.</p><p><b>polymarket:</b> -</p></details></td></tr></table>
+</section><section class="card">
+<h2><span class="pill" style="background:#b26a00">material</span> Will the April 2026 unemployment rate be at least 4.5%?</h2>
+<p class="muted small">kalshi:UNRATE-26APR-T4.5 &nbsp;vs&nbsp; polymarket:unemployment-april-2026-4-5 &nbsp;&middot;&nbsp; title match 0.94</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">rounding</td>
+<td>to one decimal place</td>
+<td>as published</td>
+<td class="why">a value near the threshold can round across it on one venue and not the other<details><summary>evidence</summary><p><b>kalshi:</b> The value is taken from the initial release by the Bureau of Labor Statistics, rounded to one decimal place, and revisions will not be used.</p><p><b>polymarket:</b> This market resolves Yes if the US unemployment rate for April 2026 is at least 4.5 percent as reported by the Bureau of Labor Statistics.</p></details></td></tr><tr class="sev-info">
+<td><span class="pill" style="background:#5a6472">info</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">venue defaults differ (at least one contract does not state this): a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> venue default (not stated in the rules text)</p><p><b>polymarket:</b> Disputes are resolved by the UMA optimistic oracle.</p></details></td></tr></table>
+</section><section class="card">
+<h2><span class="pill" style="background:#b26a00">material</span> Will the Fed cut rates by at least 25 bps at the June 2026 meeting?</h2>
+<p class="muted small">kalshi:FEDDEC-26JUN-CUT25 &nbsp;vs&nbsp; polymarket:fed-cut-june-2026 &nbsp;&middot;&nbsp; title match 0.73</p>
+<table><tr><th></th><th>Facet</th><th>kalshi</th><th>polymarket</th><th>Why it matters</th></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">early resolution</td>
+<td>not allowed</td>
+<td>allowed</td>
+<td class="why">one contract can settle before the other, so a later reversal is captured on only one venue<details><summary>evidence</summary><p><b>kalshi:</b> If no statement has been published by June 30 2026 the contract resolves to No. The contract will not resolve before the scheduled statement release at 2:00 PM ET.</p><p><b>polymarket:</b> The market may resolve early as soon as the statement is published.</p></details></td></tr><tr class="sev-material">
+<td><span class="pill" style="background:#b26a00">material</span></td>
+<td class="facet">void conditions</td>
+<td>not stated</td>
+<td>void_or_refund</td>
+<td class="why">only one venue states this, so one venue may refund or resolve 50/50 where the other still pays a side<details><summary>evidence</summary><p><b>kalshi:</b> -</p><p><b>polymarket:</b> If the meeting is postponed beyond July 15 2026 the market will be voided and all positions refunded.</p></details></td></tr><tr class="sev-info">
+<td><span class="pill" style="background:#5a6472">info</span></td>
+<td class="facet">resolver</td>
+<td>venue discretion</td>
+<td>UMA optimistic oracle</td>
+<td class="why">venue defaults differ (at least one contract does not state this): a disputed outcome is decided by different parties, which have disagreed before<details><summary>evidence</summary><p><b>kalshi:</b> venue default (not stated in the rules text)</p><p><b>polymarket:</b> Disputes are handled by the UMA optimistic oracle.</p></details></td></tr></table>
+</section>
+</div></body></html>

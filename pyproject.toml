@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "contract-rules-diff"
+version = "0.1.0"
+description = "Match equivalent prediction-market contracts across venues and diff their settlement rules"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.4"]
+
+[project.scripts]
+rulesdiff = "rulesdiff.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["rulesdiff*"]
+
+[tool.setuptools.package-data]
+rulesdiff = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
